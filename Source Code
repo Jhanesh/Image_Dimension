@@ -1,0 +1,22 @@
+from google.colab.patches import cv2_imshow
+import cv2
+
+def resize_image(input_image_path, output_size):
+    input_image = cv2.imread(input_image_path)
+    input_height, input_width = input_image.shape[:2]
+    resized_image = cv2.resize(input_image, output_size, interpolation=cv2.INTER_AREA)
+    output_height, output_width = resized_image.shape[:2]
+    return input_image, input_height, input_width, resized_image, output_height, output_width
+
+if __name__ == "__main__":
+    input_image_path = "/content/code photo 3.jpg"
+    output_size = (300, 200)
+    input_image, input_height, input_width, resized_image, output_height, output_width = resize_image(input_image_path, output_size)
+
+    print("Input Image:")
+    print(f"- Dimensions: {input_width}x{input_height}")
+    cv2_imshow(input_image)
+
+    print("\nResized Image:")
+    print(f"- Dimensions: {output_width}x{output_height}")
+    cv2_imshow(resized_image)
